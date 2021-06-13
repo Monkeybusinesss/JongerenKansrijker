@@ -2,9 +2,9 @@ CREATE  DATABASE JongerenKansrijker;
 USE JongerenKansrijker;
 
 CREATE TABLE activiteit(
-    actiecode INT AUTO_INCREMENT NOT NULL,
-    activiteit VARCHAR(255),
-    PRIMARY KEY (actiecode)
+    avtiviteitscode INT AUTO_INCREMENT NOT NULL,
+    activiteit VARCHAR(255) NOT NULL,
+    PRIMARY KEY (avtiviteitscode)
 );
 
 CREATE TABLE medewerker(
@@ -16,25 +16,25 @@ CREATE TABLE medewerker(
 
 CREATE TABLE jongere(
     jongerecode INT AUTO_INCREMENT NOT NULL,
-    roepnaam VARCHAR(255),
+    roepnaam VARCHAR(255) NOT NULL,
     tussenvoegsel VARCHAR(255),
-    achternaam VARCHAR(255),
-    inschrijfdatum DATE,
+    achternaam VARCHAR(255) NOT NULL,
+    inschrijfdatum DATE NOT NULL,
     PRIMARY KEY(jongerecode)
 );
 
 CREATE TABLE instituut(
     instituutscode INT AUTO_INCREMENT NOT NULL,
-    instituut VARCHAR(255),
-    instituuttelefoon VARCHAR(255) UNIQUE,
+    instituut VARCHAR(255) NOT NULL,
+    instituuttelefoon VARCHAR(255) NOT NULL,
     PRIMARY KEY (instituutscode)
 );
 
 CREATE TABLE jongereinstituut(
     jongere_instituutscode INT AUTO_INCREMENT NOT NULL,
-    jongerecode INT,
-    instituutscode INT,
-    startdatum DATE,
+    jongerecode INT NOT NULL,
+    instituutscode INT NOT NULL,
+    startdatum DATE NOT NULL,
     PRIMARY KEY (jongere_instituutscode),
     FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode),
     FOREIGN KEY (instituutscode) REFERENCES instituut(instituutscode)
@@ -42,11 +42,11 @@ CREATE TABLE jongereinstituut(
 
 CREATE TABLE jongereactiviteit(
     jongere_activiteitscode INT AUTO_INCREMENT NOT NULL,
-    jongerecode INT,
-    actiecode INT, 
-    startdatum DATE,
-    afgerond INT,
+    jongerecode INT NOT NULL,
+    avtiviteitscode INT NOT NULL, 
+    startdatum DATE NOT NULL,
+    afgerond INT NOT NULL,
     PRIMARY KEY (jongere_activiteitscode),
     FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode),
-    FOREIGN KEY (actiecode) REFERENCES activiteit(actiecode)
+    FOREIGN KEY (avtiviteitscode) REFERENCES activiteit(avtiviteitscode)
 );
