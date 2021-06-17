@@ -36,8 +36,8 @@ CREATE TABLE jongereinstituut(
     instituutscode INT NOT NULL,
     startdatum DATE NOT NULL,
     PRIMARY KEY (jongere_instituutscode),
-    FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode),
-    FOREIGN KEY (instituutscode) REFERENCES instituut(instituutscode)
+    FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode) ON DELETE CASCADE,
+    FOREIGN KEY (instituutscode) REFERENCES instituut(instituutscode) ON DELETE CASCADE
 );
 
 CREATE TABLE jongereactiviteit(
@@ -47,6 +47,6 @@ CREATE TABLE jongereactiviteit(
     startdatum DATE NOT NULL,
     afgerond INT NOT NULL,
     PRIMARY KEY (jongere_activiteitscode),
-    FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode),
-    FOREIGN KEY (avtiviteitscode) REFERENCES activiteit(avtiviteitscode)
+    FOREIGN KEY (jongerecode) REFERENCES jongere(jongerecode) ON DELETE CASCADE,
+    FOREIGN KEY (avtiviteitscode) REFERENCES activiteit(avtiviteitscode) ON DELETE CASCADE
 );
